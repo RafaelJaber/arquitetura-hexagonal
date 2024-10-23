@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "jaber.client.address.url",
+      "type": "java.lang.String",
+      "description": "Description for jaber.client.address.url."
+  }
+] }
