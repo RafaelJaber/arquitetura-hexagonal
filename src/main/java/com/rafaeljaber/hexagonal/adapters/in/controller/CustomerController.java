@@ -4,7 +4,7 @@ import com.rafaeljaber.hexagonal.adapters.in.controller.mapper.CustomerMapper;
 import com.rafaeljaber.hexagonal.adapters.in.controller.request.CustomerRequest;
 import com.rafaeljaber.hexagonal.adapters.in.controller.response.CustomerResponse;
 import com.rafaeljaber.hexagonal.application.core.domain.Customer;
-import com.rafaeljaber.hexagonal.application.core.usecase.UpdateCustomerUseCase;
+import com.rafaeljaber.hexagonal.application.ports.in.DeleteCustomerByIdInputPort;
 import com.rafaeljaber.hexagonal.application.ports.in.FindCustomerByIdInputPort;
 import com.rafaeljaber.hexagonal.application.ports.in.InsertCustomerInputPort;
 import com.rafaeljaber.hexagonal.application.ports.in.UpdateCustomerInputPort;
@@ -21,6 +21,7 @@ public class CustomerController {
     private final FindCustomerByIdInputPort findCustomerByIdInputPort;
     private final InsertCustomerInputPort insertCustomerInputPort;
     private final UpdateCustomerInputPort updateCustomerInputPort;
+    private final DeleteCustomerByIdInputPort deleteCustomerByIdInputPort;
     private final CustomerMapper customerMapper;
 
     @GetMapping("/{id}")
@@ -48,4 +49,9 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        deleteCustomerByIdInputPort.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
